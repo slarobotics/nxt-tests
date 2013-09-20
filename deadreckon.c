@@ -1,7 +1,6 @@
-//all units are in inches
-foat rpm = 30;
+float rpm = 30;
 float circumference = 12;
-int distancetogo = 24;
+int distancetogo = 36;
 
 void setMotors(int power){
 	motor[motorB] = power;
@@ -14,7 +13,7 @@ task main(){
 	float timemoved = 0;
 	setMotors(100);
 	while(timemoved < timetomove){
-		Wait1Msec(1)
+		Wait1Msec(1);
 		timemoved += 0.001
 	}
 	setMotors(0);
