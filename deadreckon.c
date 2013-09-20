@@ -1,13 +1,13 @@
+//all units in inches
 float rpm = 30;
 float circumference = 12;
-int distancetogo = 36;
 
 void setMotors(int power){
 	motor[motorB] = power;
 	motor[motorC] = power;
 }
 
-task main(){
+void moveDistance(float distancetogo){
 	float timetomove = distancetogo / (rpm * circumference);
 	timetomove *= 60;
 	float timemoved = 0;
@@ -17,4 +17,8 @@ task main(){
 		timemoved += 0.001;
 	}
 	setMotors(0);
+}
+
+task main(){
+	moveDistance(36);
 }
