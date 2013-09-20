@@ -1,6 +1,7 @@
-foat rpm = 10;
-float circumference = 1.5;
-int distancetogo = 100;
+//all units are in inches
+foat rpm = 30;
+float circumference = 12;
+int distancetogo = 24;
 
 void setMotors(int power){
 	motor[motorB] = power;
