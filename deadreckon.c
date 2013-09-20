@@ -1,4 +1,4 @@
-foat rpm = 10;
+float rpm = 10;
 float circumference = 1.5;
 int distancetogo = 100;
 
@@ -13,7 +13,7 @@ task main(){
 	float timemoved = 0;
 	setMotors(100);
 	while(timemoved < timetomove){
-		Wait1Msec(1)
+		Wait1Msec(1);
 		timemoved += 0.001
 	}
 	setMotors(0);
