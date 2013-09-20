@@ -13,8 +13,8 @@ task main(){
 	float timemoved = 0;
 	setMotors(100);
 	while(timemoved < timetomove){
-		Wait1Msec(1);
-		timemoved += 0.001
+		wait1Msec(1);
+		timemoved += 0.001;
 	}
 	setMotors(0);
 }
