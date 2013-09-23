@@ -25,7 +25,7 @@ void moveDistance(float distancetogo){
 			setMotors(0);
 		}*/
 	}
-	setMotors(0);
+	setMotors(0, 0);
 }
 
 void turn(float degree){
