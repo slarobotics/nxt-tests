@@ -2,7 +2,7 @@
 //all units in inches
 float rotationdistance = 2;
 //float circumference = 12;
-//float turnduration = 2.4; //seconds
+int turnticks = 360;
 
 void setMotors(int powerleft, int powerright){
 	motor[motorB] = powerright;
@@ -19,23 +19,17 @@ void moveDistance(float distancetogo){
 	setMotors(0, 0);
 }
 
-void turn(float degree){
-	float duration = abs(degree) * turnduration / 360;
-	if(degree > 0){
-		setMotors(-100, 100);
+void turn(int ticks){
+	nMotorEncoderTarget[motorB] = ticks;
+	setMotors(100, 100);
+	nSyncedTurnRatio = -100;
+	while(nMotorEncoder[motorB] < ticks){
 	}
-	else{
-		setMotors(100, -100);
-	}
-	float timemoved = 0;
-	while(timemoved < duration){
-		timemoved += 0.001;
-		wait1Msec(1);
-	}
+	setMotors(0, 0);
 }
 
 task main(){
 	nSyncedMotors = synchBC;
 	moveDistance(36);
-	turn(90);
+	turn(360);
 }
