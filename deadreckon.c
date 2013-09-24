@@ -1,8 +1,8 @@
 //const tSensors touchSensor          = (tSensors) S1;   //touch sensor config
 //all units in inches
-float rpm = 30;
-float circumference = 12;
-float turnduration = 2.4; //seconds
+float rotationdistance = 2;
+//float circumference = 12;
+//float turnduration = 2.4; //seconds
 
 void setMotors(int powerleft, int powerright){
 	motor[motorB] = powerright;
@@ -10,20 +10,11 @@ void setMotors(int powerleft, int powerright){
 }
 
 void moveDistance(float distancetogo){
-	float timetomove = distancetogo / (rpm * circumference);
-	timetomove *= 60;
-	float timemoved = 0;
+	float ticksneeded = (distancetogo / (rotationdistance)) * 360;
+	nMotorEncoderTarget[motorB] = ticksneeded;
 	setMotors(100, 100);
-	while(timemoved < timetomove){
-		wait1Msec(1);
-		timemoved += 0.001;
-		/*if(!SensorValue(touchSensor) == 1){
-			setMotors(100);
-			
-		}
-		else{
-			setMotors(0);
-		}*/
+	nSyncedTurnRatio = +100;
+	while(nMotorEncoder[motorB] < ticksneeded){
 	}
 	setMotors(0, 0);
 }
@@ -44,6 +35,7 @@ void turn(float degree){
 }
 
 task main(){
+	nSyncedMotors = synchBC;
 	moveDistance(36);
 	turn(90);
 }
