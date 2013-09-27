@@ -1,4 +1,3 @@
-#include "JoystickDriver.c" 
 #pragma config(Sensor, S1,     touch,          sensorTouch) // touch sensor config
 
 //all units in inches
@@ -50,40 +49,7 @@ void initBlockKick(){
 	
 }
 
-//I took this from the robotc joystick example- It should work with the motors,
-void initControl(){
-	int threshold = 20;             /* Int 'threshold' will allow us to ignore low      
-                                	 readings that keep our robot in perpetual motion. */
 
-  while(true)                            // Infinite loop:
-  {
-    getJoystickSettings(joystick); // get state of joystick
-    if(abs(joystick.joy1_y2) > threshold) //right joystick readings
-    {
-      motor[motorB] = joystick.joy1_y2;         
-    else                                    
-    {
-      motor[motorB] = 0;                        
-    }
-
-
-    if(abs(joystick.joy1_y1) > threshold)  //left joystick 
-    {
-      motor[motorC] = joystick.joy1_y1;        
-    }
-    else                                    
-    {
-      motor[motorC] = 0;                        
-    }
-  }
-}
-
-/* 
-* This is for the ultrasonic sensor,
-* which has states from 0-255, which is 
-* the distance in CM
-* sonar is the default UV sensor here
-*/
 
 void stopMotors(){
 	setMotors(0, 0); //stop all motors
@@ -98,7 +64,4 @@ void autonomus(){
 task main(){
 	nSyncedMotors = synchBC;
 	autonomus(); // calls the function for autonomus 
-	while (true){ //starts the joystick control 
-		initcontrol();
-	}
-}
+
