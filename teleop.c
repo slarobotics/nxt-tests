@@ -47,7 +47,5 @@ void initControl()
 
 task main()
 {
-
-
-
+	initControl();
 }
