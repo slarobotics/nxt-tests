@@ -7,12 +7,35 @@
 * ------------------------------------------------------------
 * ------------------------------------Config of Motors-----------------------------
 *    [I/O Port]              [Name]              [Type]              [Description]
+*    Port A									 motorA
 *    Port B                  motorB              NXT                 Right motor
 *    Port C                  motorC              NXT                 Left motor
 * ---------------------------------------------------------------------------------
 */
 
 #include "JoystickDriver.c"
+
+int buttonValue; //not sure if I will need this yet, this is just in case
+
+/* These will be the controls for raising the bulldozer and the claw.
+We can handle up to 2 buttons pressed at a time. joy1Btn(buttonValue) & joy2btn(buttonValue)
+Button Values on a logitech dual action go from 1-10, button's can return
+either 0(off) or 1(on).
+*/
+
+void moveClaw(){
+/* moveClaw will work for any claw-like implement we design
+ Buttons 5&7 and 6&8 are reserved for raising and lowering */
+ int x = 0;
+	while(joy1Btn(5) == 1){ //while button is in an on state
+		motor[motorA] = x + 5;
+		x++;
+	}
+	while(joy1Btn(7) == 1){
+		motor[motorA] = x - 5;
+		x--;
+  }
+}
 
 void initControl()
 {
@@ -41,6 +64,8 @@ void initControl()
     {
       motor[motorC] = 0;                        // Motor C is stopped with a power level of 0.
     }
+
+		moveClaw();
   }
 }
 
