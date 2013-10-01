@@ -30,38 +30,13 @@ void turn(int ticks){
 	setMotors(0, 0);
 }
 
-/*
-* Touch sensors have 2 states, these states are
-* stored in SensorValue(touch). touch is the name of 
-* the default sensor in this file
-*/
-
-bool checkIfTouching(){
-	if (SensorValue(touch) == 1){ //on state
-		return true;
-	} else return false; 
-}
-
-void initBlockKick(){
-	if (checkIfTouching() == true){
-		turn(45); //this turned 45 degrees before ticks, not sure if will work now
-	}
-	
-}
-
-
-
+ 
 void stopMotors(){
 	setMotors(0, 0); //stop all motors
 }
 
-void autonomus(){
-	//this is the function for autonomus mode
-	moveDistance(36);
-	turn(360);
-}
-
 task main(){
 	nSyncedMotors = synchBC;
-	autonomus(); // calls the function for autonomus 
-
+ 	moveDistance(36);
+	turn(360);
+}
